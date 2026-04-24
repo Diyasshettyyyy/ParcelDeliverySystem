@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Parcel - Parcel Delivery System</title>
+    <link href="vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">🚚 Parcel Delivery System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="add-parcel.html">Add Parcel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="parcel-list.html">Parcel List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="driver-management.html">Driver Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="parcel-tracking.html">Parcel Tracking</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container page-shell">
+        <div class="d-flex flex-wrap align-items-end justify-content-between gap-2 mb-3">
+            <div>
+                <h1 class="page-title mb-1">Add New Parcel</h1>
+                <div class="text-muted">Enter parcel details to create a new shipment</div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="addParcelForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="parcelId" class="form-label">Parcel ID *</label>
+                                    <input type="text" class="form-control" id="parcelId" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="weight" class="form-label">Weight (kg) *</label>
+                                    <input type="number" step="0.1" class="form-control" id="weight" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="senderName" class="form-label">Sender Name *</label>
+                                    <input type="text" class="form-control" id="senderName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="receiverName" class="form-label">Receiver Name *</label>
+                                    <input type="text" class="form-control" id="receiverName" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="pickupAddress" class="form-label">Pickup Address *</label>
+                                <textarea class="form-control" id="pickupAddress" rows="2" required></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="deliveryAddress" class="form-label">Delivery Address *</label>
+                                <textarea class="form-control" id="deliveryAddress" rows="2" required></textarea>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Add Parcel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="message" class="alert d-none mt-3" role="alert"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js?v=5"></script>
+    <script>
+        // Handle form submission
+        document.getElementById('addParcelForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            addParcel();
+        });
+    </script>
+</body>
+</html>

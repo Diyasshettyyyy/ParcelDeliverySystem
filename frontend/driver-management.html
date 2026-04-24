@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Management - Parcel Delivery System</title>
+    <link href="vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">🚚 Parcel Delivery System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="add-parcel.html">Add Parcel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="parcel-list.html">Parcel List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="driver-management.html">Driver Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="parcel-tracking.html">Parcel Tracking</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container page-shell">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="page-title mb-1">Driver Management</h1>
+                <div class="text-muted">Manage drivers and their current location</div>
+            </div>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDriverModal">＋ Add Driver</button>
+        </div>
+
+        <div id="message" class="alert d-none" role="alert"></div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped" id="driversTable">
+                        <thead>
+                            <tr>
+                                <th>Driver ID</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Vehicle Number</th>
+                                <th>Route ID</th>
+                                <th>Location</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="driversTableBody">
+                            <tr>
+                                <td colspan="9" class="text-center">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Driver Modal -->
+    <div class="modal fade" id="addDriverModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Driver</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addDriverForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="driverId" class="form-label">Driver ID *</label>
+                                <input type="text" class="form-control" id="driverId" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="driverName" class="form-label">Name *</label>
+                                <input type="text" class="form-control" id="driverName" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="driverPhone" class="form-label">Phone *</label>
+                                <input type="tel" class="form-control" id="driverPhone" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="vehicleNumber" class="form-label">Vehicle Number *</label>
+                                <input type="text" class="form-control" id="vehicleNumber" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="routeId" class="form-label">Route ID (Optional)</label>
+                            <input type="text" class="form-control" id="routeId">
+                        </div>
+                        <div class="mb-3">
+                            <label for="driverLocationName" class="form-label">Current Location (Place name) *</label>
+                            <input type="text" class="form-control" id="driverLocationName" placeholder="e.g., Mangaluru" required>
+                            <div class="form-text">We’ll automatically convert this to latitude/longitude for the map.</div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="addDriver()">Add Driver</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Driver Modal -->
+    <div class="modal fade" id="editDriverModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Driver</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editDriverForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editDriverId" class="form-label">Driver ID</label>
+                                <input type="text" class="form-control" id="editDriverId" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editDriverName" class="form-label">Name *</label>
+                                <input type="text" class="form-control" id="editDriverName" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editDriverPhone" class="form-label">Phone *</label>
+                                <input type="tel" class="form-control" id="editDriverPhone" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editVehicleNumber" class="form-label">Vehicle Number *</label>
+                                <input type="text" class="form-control" id="editVehicleNumber" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="editRouteId" class="form-label">Route ID (Optional)</label>
+                            <input type="text" class="form-control" id="editRouteId">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editDriverLocationName" class="form-label">Current Location (Place name) *</label>
+                            <input type="text" class="form-control" id="editDriverLocationName" placeholder="e.g., Bangalore" required>
+                            <div class="form-text">We’ll automatically convert this to latitude/longitude for the map.</div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="updateDriver()">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js?v=5"></script>
+    <script>
+        // Load drivers when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDrivers();
+        });
+    </script>
+</body>
+</html>

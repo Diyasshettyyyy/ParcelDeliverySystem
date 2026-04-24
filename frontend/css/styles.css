@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Modern UI theme for Parcel Delivery System */
+:root {
+    --app-bg: #F8FAFC;
+    --app-text: #0F172A;
+    --app-muted: #64748B;
+    --app-border: rgba(15, 23, 42, 0.10);
+    --app-card: #FFFFFF;
+    --app-shadow: 0 10px 22px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.06);
+    --app-radius: 16px;
+    --app-radius-sm: 12px;
+    --app-accent: #22C55E; /* success green */
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--app-bg);
+    color: var(--app-text);
+}
+
+/* Navbar */
+.navbar {
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.10);
+}
+
+.navbar .navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.navbar .nav-link {
+    opacity: 0.92;
+}
+
+.navbar .nav-link.active,
+.navbar .nav-link:hover {
+    opacity: 1;
+}
+
+/* Page spacing */
+.page-shell {
+    padding-top: 1.25rem;
+    padding-bottom: 2rem;
+}
+
+.page-title {
+    font-weight: 700;
+    letter-spacing: -0.2px;
+}
+
+.text-muted {
+    color: var(--app-muted) !important;
+}
+
+/* Cards */
+.card {
+    background: var(--app-card);
+    border: 1px solid var(--app-border);
+    border-radius: var(--app-radius);
+    box-shadow: var(--app-shadow);
+}
+
+.card-header {
+    background: rgba(2, 6, 23, 0.02);
+    border-bottom: 1px solid var(--app-border);
+    font-weight: 600;
+    border-top-left-radius: var(--app-radius);
+    border-top-right-radius: var(--app-radius);
+}
+
+.card-title {
+    font-weight: 700;
+}
+
+.card-subtitle {
+    color: var(--app-muted);
+}
+
+.metric-card {
+    border-radius: var(--app-radius);
+    border: 1px solid var(--app-border);
+}
+
+.metric-label {
+    color: var(--app-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.metric-value {
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1.1;
+}
+
+.metric-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    background: rgba(34, 197, 94, 0.12);
+    color: #14532D;
+}
+
+/* Forms */
+.form-label {
+    font-weight: 600;
+    color: #1F2937;
+}
+
+.form-control,
+.form-select {
+    border-radius: 12px;
+    border-color: rgba(15, 23, 42, 0.14);
+    padding: 0.65rem 0.85rem;
+}
+
+.form-control::placeholder {
+    color: rgba(100, 116, 139, 0.85);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: rgba(34, 197, 94, 0.70);
+    box-shadow: 0 0 0 0.2rem rgba(34, 197, 94, 0.18);
+}
+
+/* Buttons */
+.btn {
+    border-radius: 12px;
+    font-weight: 600;
+    transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease, border-color 120ms ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.10);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.btn-primary {
+    background-color: #2563EB;
+    border-color: #2563EB;
+}
+
+.btn-success {
+    background-color: var(--app-accent);
+    border-color: var(--app-accent);
+}
+
+.btn-outline-primary:hover {
+    background-color: rgba(37, 99, 235, 0.10);
+    border-color: rgba(37, 99, 235, 0.40);
+    color: #1D4ED8;
+}
+
+/* Tables */
+.table-responsive {
+    border-radius: var(--app-radius-sm);
+}
+
+.table th {
+    border-top: none;
+    font-weight: 700;
+    color: #334155;
+}
+
+.table thead th {
+    background: rgba(2, 6, 23, 0.03);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.10);
+}
+
+.table tbody tr {
+    transition: background-color 120ms ease;
+}
+
+.table tbody tr:hover {
+    background: rgba(37, 99, 235, 0.06);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-accent-bg: rgba(2, 6, 23, 0.02);
+}
+
+.table > :not(caption) > * > * {
+    border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/* Card header typography */
+.card-header h5 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Badges / statuses */
+.badge {
+    font-size: 0.78em;
+    padding: 0.4em 0.6em;
+    border-radius: 999px;
+}
+
+.status-pending {
+    background-color: #F59E0B;
+    color: #111827;
+}
+
+.status-in-transit {
+    background-color: #0EA5E9;
+    color: #05232f;
+}
+
+.status-delivered {
+    background-color: #16A34A;
+    color: #fff;
+}
+
+/* In-page notifications */
+.alert {
+    border-radius: 14px;
+    border: 1px solid var(--app-border);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+}
+
+/* Map styles (Leaflet) */
+.map-shell {
+    border-radius: var(--app-radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--app-border);
+    box-shadow: 0 12px 20px rgba(15, 23, 42, 0.08);
+}
+
+#map {
+    border-radius: inherit;
+    height: 500px;
+    width: 100%;
+}
+
+.leaflet-container {
+    border-radius: inherit;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .page-shell {
+        padding-top: 1rem;
+    }
+
+    .metric-value {
+        font-size: 1.75rem;
+    }
+
+    .table-responsive {
+        font-size: 0.92rem;
+    }
+}
